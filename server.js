@@ -15,6 +15,7 @@ const fsp = require('fs/promises');
 const path = require('path');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
+const { Pool } = require('pg');
 
 const mailTransporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -46,6 +47,13 @@ const CONFIG_FILE = path.join(ROOT, 'config.json');
 const PORT = Number(process.env.PORT) || 3000;
 const HOST = process.env.HOST || '127.0.0.1';
 const SESSION_TTL_MS = 12 * 60 * 60 * 1000;   // 12 часа
+
+const dbPool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
 
 const DEFAULT_ADMIN_PASSWORD = '';
 
@@ -154,28 +162,99 @@ let db = { bookings: [] };
 let writeChain = Promise.resolve();
 
 async function loadDb() {
-    await fsp.mkdir(DATA_DIR, { recursive: true });
     try {
-        const raw = await fsp.readFile(DB_FILE, 'utf8');
-        const parsed = JSON.parse(raw);
-        db = { bookings: Array.isArray(parsed.bookings) ? parsed.bookings : [] };
-    } catch (err) {
-        if (err.code !== 'ENOENT') {
-            // повредена база — пазим копие, вместо да я изтрием безшумно
-            const backup = `${DB_FILE}.corrupt-${Date.now()}`;
-            await fsp.rename(DB_FILE, backup).catch(() => {});
-            console.error(`[внимание] ${DB_FILE} не може да се прочете. Копие: ${backup}`);
-        }
+        const result = await dbPool.query(`
+            SELECT
+                id,
+                date,
+                time,
+                name,
+                phone,
+                email,
+                service,
+                note,
+                status,
+                created_at
+            FROM bookings
+            ORDER BY date, time
+        `);
+
+        db = {
+            bookings: result.rows.map(row => ({
+                id: row.id,
+                date: row.date.toISOString().slice(0, 10),
+                time: row.time,
+                name: row.name,
+                phone: row.phone,
+                email: row.email || '',
+                service: row.service,
+                note: row.note || '',
+                status: row.status,
+                createdAt: row.created_at.toISOString()
+            }))
+        };
+
+        console.log(`✅ Заредени резервации от PostgreSQL: ${db.bookings.length}`);
+    } catch (error) {
+        console.error('❌ Грешка при зареждане на резервациите от PostgreSQL:');
+        console.error(error.message);
+
         db = { bookings: [] };
-        await persist();
     }
 }
 
 /** Атомарен запис — първо във временен файл, после rename. */
 async function persist() {
-    const tmp = `${DB_FILE}.tmp-${process.pid}`;
-    await fsp.writeFile(tmp, JSON.stringify(db, null, 2), 'utf8');
-    await fsp.rename(tmp, DB_FILE);
+    const client = await dbPool.connect();
+
+    try {
+        await client.query('BEGIN');
+
+        await client.query('DELETE FROM bookings');
+
+        for (const booking of db.bookings) {
+            await client.query(
+                `
+                INSERT INTO bookings
+                (
+                    id,
+                    date,
+                    time,
+                    name,
+                    phone,
+                    email,
+                    service,
+                    note,
+                    status,
+                    created_at
+                )
+                VALUES
+                ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+                `,
+                [
+                    booking.id,
+                    booking.date,
+                    booking.time,
+                    booking.name,
+                    booking.phone,
+                    booking.email || null,
+                    booking.service,
+                    booking.note || '',
+                    booking.status,
+                    booking.createdAt
+                ]
+            );
+        }
+
+        await client.query('COMMIT');
+
+        console.log(`✅ Запазени резервации в PostgreSQL: ${db.bookings.length}`);
+    } catch (error) {
+        await client.query('ROLLBACK');
+        throw error;
+    } finally {
+        client.release();
+    }
 }
 
 /**
@@ -521,6 +600,7 @@ function apiAdminList(req, res, url) {
     rows.sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
 
     const today = fmtDate(new Date());
+   
     sendJson(res, 200, {
         bookings: rows,
         stats: {
