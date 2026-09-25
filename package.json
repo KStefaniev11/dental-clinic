@@ -1,0 +1,16 @@
+{
+  "name": "dental-clinic",
+  "version": "1.0.0",
+  "description": "Сайт и система за онлайн резервации на дентален кабинет",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.3",
+    "nodemailer": "^10.0.10"
+  }
+}

@@ -1,0 +1,742 @@
+
+:root{
+    --ink:#1E2A22;
+    --canvas:#EEF2ED;
+    --canvas-2:#E4EAE1;
+    --pine:#22463C;
+    --pine-deep:#152F28;
+    --sage:#7C9885;
+    --gold:#C9973E;
+    --gold-soft:#EADFC2;
+    --line:#c9d2c4;
+    --white:#FBFAF7;
+    --radius:14px;
+    --shadow: 0 10px 30px rgba(21,47,40,0.08);
+}
+ 
+ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+body {
+    font-family:'IBM Plex Mono', monospace;
+    color: #222;
+    background: #f5f7fa;
+    line-height: 1.6;
+
+}
+ 
+.header-section {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 14px 20px;
+}
+ 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+ 
+.logo img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+}
+ 
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+ 
+.logo-section span {
+    font-size: 10px;
+    font-family: monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+ 
+ 
+.header-section nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+ 
+nav ul li a {
+    text-decoration: none;
+    color: #222;
+    font-weight: bold;
+    padding:  10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+ 
+.header-section a:hover {
+    background-color:#455046;
+    color: #fff;
+}
+ 
+.hero-section{
+    position:relative; padding:90px 28px 64px; overflow:hidden;
+    max-width:1120px; margin:0 auto;
+    display:grid; grid-template-columns:1.1fr 0.9fr;
+    gap:56px; align-items:center;
+}
+ 
+.hero-text .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--sage);
+    display:flex; align-items:center; gap:10px; margin-bottom:18px;
+}
+.hero-text .eyebrow::before{
+    content:''; width:22px; height:1px; background:var(--sage); display:inline-block;
+}
+ 
+.hero-section h2{ font-size:2.9rem; line-height:1.08; }
+.hero-section h2 em{ font-style:italic; color:var(--pine); }
+ 
+.hero-section p{
+    font-size:1.06rem; color:#3d4a41; max-width:46ch; margin:22px 0 30px;
+}
+ 
+.btn-row{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+ 
+.btn-primary{
+    background:var(--pine); color:var(--white); padding:14px 26px;
+    border-radius:999px; text-decoration:none; font-weight:600; font-size:0.95rem;
+    display:inline-flex; align-items:center; gap:10px;
+    box-shadow:var(--shadow); transition:transform .2s, background .2s;
+}
+.btn-primary:hover{ background:var(--pine-deep); transform:translateY(-2px); }
+ 
+.btn-ghost{
+    text-decoration:none; color:var(--pine-deep); font-weight:500; font-size:0.95rem;
+    border-bottom:1px solid var(--pine-deep); padding-bottom:2px;
+}
+ 
+section{ padding:74px 0; }
+ 
+.section-head{ max-width:640px; margin-bottom:44px; margin-left:auto; margin-right:auto; padding:0 28px; }
+.section-head .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:0.78rem;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--sage);
+    display:flex; align-items:center; gap:10px; margin-bottom:14px;
+}
+.section-head .eyebrow::before{
+    content:''; width:22px; height:1px; background:var(--sage); display:inline-block;
+}
+.section-head h3{ font-size:2rem; }
+.section-head p{ color:#455046; margin-top:14px; font-size:1.02rem; }
+ 
+.services-grid{
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:18px; max-width:1120px; margin:0 auto; padding:0 28px;
+}
+ 
+.service-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px; transition:box-shadow .25s, transform .25s;
+}
+.service-card:hover{ box-shadow:var(--shadow); transform:translateY(-4px); }
+ 
+.service-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--gold);
+    letter-spacing:0.06em; text-transform:uppercase;
+}
+.service-card h4{ font-size:1.15rem; margin:10px 0 8px; font-family:'Fraunces', serif; color:var(--pine-deep); }
+.service-card p{ font-size:0.9rem; color:#4b564d; margin:0 0 16px; }
+.service-price{
+    font-family:'IBM Plex Mono', monospace; font-size:0.85rem; color:var(--pine-deep);
+    border-top:1px dashed var(--line); padding-top:12px;
+}
+ 
+.contacts-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:24px;
+    max-width:1120px; margin:0 auto; padding:0 28px;
+    align-items:stretch;
+}
+ 
+.contacts-info{
+    display:flex; flex-direction:column; gap:0;
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:30px 32px;
+}
+ 
+.contact-item{
+    display:flex; flex-direction:column; gap:5px;
+    padding:16px 0; border-bottom:1px dashed var(--line);
+}
+.contact-item:first-child{ padding-top:0; }
+.contact-item:last-child{ border-bottom:none; padding-bottom:0; }
+ 
+.contact-label{
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
+    letter-spacing:0.06em; text-transform:uppercase; color:var(--gold);
+}
+ 
+.contact-item a{
+    font-family:'Fraunces', serif; font-size:1.2rem; color:var(--pine-deep);
+    text-decoration:none; transition:color .2s ease;
+}
+.contact-item a:hover{ color:var(--pine); }
+ 
+.contact-item span:not(.contact-label){
+    font-family:'Fraunces', serif; font-size:1.1rem; color:var(--pine-deep);
+}
+ 
+.contacts-map{
+    border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);
+    min-height:280px; box-shadow:var(--shadow);
+}
+.contacts-map iframe{
+    display:block; width:100%; height:100%; min-height:280px; filter:grayscale(15%);
+}
+ 
+@media (max-width:860px){
+    .contacts-grid{ grid-template-columns:1fr; }
+    .contacts-map, .contacts-map iframe{ min-height:240px; }
+}
+ 
+.doctor-wrap{
+    display:grid; grid-template-columns:0.8fr 1.2fr; gap:40px; align-items:center;
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:36px; max-width:1120px; margin:0 auto;
+}
+ 
+.doctor-photo{
+    height:260px; border-radius:10px;
+    background:linear-gradient(135deg, var(--sage), var(--pine));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-size:3rem; color:var(--white);
+}
+ 
+.doctor-info h4{ font-size:1.5rem; font-family:'Fraunces', serif; color:var(--pine-deep); }
+.doctor-role{ font-size:1rem; color:var(--gold); font-family:'IBM Plex Mono', monospace; margin:6px 0 16px; }
+.doctor-info p{ font-size:0.96rem; color:#3d4a41; margin-bottom:10px; }
+.doctor-facts{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+ 
+ 
+ 
+#booking .section-content{ max-width:1120px; margin:0 auto; padding:0 28px; }
+
+.booking-box{
+    background:var(--pine-deep); border-radius:24px; color:var(--white);
+    padding:56px 44px; margin:0 auto; overflow:hidden;
+}
+.booking-box .section-head{ margin-left:0; margin-right:0; padding:0; max-width:640px; }
+.booking-box .section-head h3,
+.booking-box .section-head p{ color:var(--white); }
+.booking-box .section-head p{ color:#cdd8cf; }
+.booking-box .eyebrow{ color:var(--gold-soft); }
+.booking-box .eyebrow::before{ background:var(--gold-soft); }
+ 
+.book-grid{ display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:start; }
+
+/* без това колоните не могат да се свият и съдържанието излиза извън .booking-box */
+.book-col{ min-width:0; }
+
+.form-panel{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:18px;
+    padding:28px 26px;
+}
+
+.slots-title{
+    font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:#cdd8cf; margin:4px 0 12px;
+}
+ 
+.date-row{ display:flex; gap:8px; overflow-x:auto; padding:6px 0 14px; }
+ 
+.date-pill{
+    flex:0 0 auto; padding:10px 14px; border-radius:12px;
+    border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.05);
+    cursor:pointer; text-align:center; min-width:64px;
+    color:var(--white); font:inherit;
+    transition:background .2s, border-color .2s;
+}
+.date-pill:hover:not(.active){ border-color:var(--gold-soft); }
+.date-pill .d{
+    font-size:0.72rem; color:#a9b8ac; font-family:'IBM Plex Mono', monospace; text-transform:uppercase;
+}
+.date-pill .n{ font-family:'Fraunces', serif; font-size:1.2rem; margin-top:2px; }
+ 
+.date-pill.active{ background:var(--gold); border-color:var(--gold); }
+.date-pill.active .d,
+.date-pill.active .n{ color:var(--pine-deep); }
+ 
+.slots-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:9px; margin-bottom:22px; }
+ 
+.slot{
+    padding:10px 0; text-align:center; border-radius:9px;
+    border:1px solid rgba(255,255,255,0.18); background:rgba(255,255,255,0.05);
+    cursor:pointer; font-family:'IBM Plex Mono', monospace; font-size:0.86rem;
+    color:var(--white); width:100%;
+    transition:background .2s, border-color .2s;
+}
+.slot:hover:not(.is-taken):not(.is-past):not(.selected){ border-color:var(--gold-soft); }
+
+.slot.selected{
+    background:var(--gold); border-color:var(--gold); color:var(--pine-deep); font-weight:600;
+}
+
+/* зает или минал час — не може да се избере */
+.slot.is-taken{
+    opacity:0.55; cursor:not-allowed; text-decoration:line-through;
+    background:rgba(196,90,90,0.16);
+    border:1px dashed rgba(196,90,90,0.75);
+    color:#e3b3b3;
+}
+
+.slot.is-past{
+    opacity:0.35; cursor:not-allowed; text-decoration:line-through;
+    background:rgba(0,0,0,0.25);
+    border:1px dashed rgba(255,255,255,0.22);
+    color:#9fb0a3;
+}
+
+.slot.taken:not(.is-past){ border-color:rgba(196,90,90,0.45); }
+
+.slots-empty{
+    grid-column:1 / -1; padding:16px 14px; border-radius:10px;
+    border:1px dashed rgba(255,255,255,0.2); background:rgba(255,255,255,0.04);
+    color:#cdd8cf; font-size:0.9rem; text-align:center;
+}
+
+.field{ margin-bottom:18px; }
+.field label{
+    display:block; font-size:0.82rem; margin-bottom:7px; color:var(--gold-soft);
+    font-family:'IBM Plex Mono', monospace;
+}
+.field input, .field select, .field textarea{
+    display:block; width:100%; max-width:100%; padding:12px 14px; border-radius:10px;
+    border:1px solid rgba(255,255,255,0.28); background:rgba(0,0,0,0.22);
+    color:var(--white); font-family:'Work Sans', sans-serif; font-size:0.95rem;
+    transition:border-color .2s, background .2s;
+}
+.field textarea{ resize:vertical; min-height:64px; }
+.field input:focus, .field select:focus, .field textarea:focus{
+    outline:none; border-color:var(--gold); background:rgba(0,0,0,0.32);
+}
+.field input::placeholder, .field textarea::placeholder{ color:#9fb0a3; }
+.field select option{ color:#1E2A22; background:var(--white); }
+
+.submit-btn{
+    width:100%; padding:15px; border-radius:12px; border:none;
+    background:var(--gold); color:var(--pine-deep); font-weight:700; font-size:1rem;
+    cursor:pointer; margin-top:8px; transition:background .2s, transform .2s;
+}
+.submit-btn:hover{ transform:translateY(-2px); background:#dcae56; }
+.submit-btn:disabled{ opacity:0.5; cursor:not-allowed; transform:none; }
+ 
+.form-msg{ margin-top:14px; font-size:0.88rem; padding:12px 14px; border-radius:10px; display:none; }
+.form-msg.ok{
+    display:block; background:rgba(114,163,120,0.18); border:1px solid rgba(114,163,120,0.4); color:#d6ecd9;
+}
+.form-msg.err{
+    display:block; background:rgba(196,90,90,0.18); border:1px solid rgba(196,90,90,0.4); color:#f4d4d4;
+}
+
+@media (max-width:900px){
+    .book-grid{ grid-template-columns:1fr; gap:28px; }
+    .booking-box{ padding:40px 24px; border-radius:18px; }
+    .booking-box .section-head{ margin-bottom:30px; }
+    .form-panel{ padding:24px 20px; }
+}
+
+.slots-legend{
+    display:flex; flex-wrap:wrap; gap:16px; align-items:center;
+    font-family:'IBM Plex Mono', monospace; font-size:0.74rem; color:#a9b8ac;
+}
+.slots-legend span{ display:inline-flex; align-items:center; gap:7px; }
+.key{ width:14px; height:14px; border-radius:4px; display:inline-block; }
+.key-free{ border:1px solid rgba(255,255,255,0.35); background:rgba(255,255,255,0.08); }
+.key-taken{ border:1px dashed rgba(196,90,90,0.7); background:rgba(0,0,0,0.3); }
+.key-past{ border:1px dashed rgba(255,255,255,0.3); background:rgba(0,0,0,0.3); opacity:0.5; }
+
+@media (max-width:900px){
+    .book-grid{ grid-template-columns:1fr; gap:28px; }
+    .booking-box{ padding:40px 24px; border-radius:18px; }
+    .booking-box .section-head{ margin-bottom:30px; }
+    .form-panel{ padding:24px 20px; }
+}
+
+@media (max-width:480px){
+    #booking .section-content{ padding:0 16px; }
+    .booking-box{ padding:30px 16px; }
+    .form-panel{ padding:20px 16px; }
+    .slots-grid{ grid-template-columns:repeat(3,1fr); }
+}
+
+
+/* =========================================================================
+   Админ панел (admin.html)
+   ========================================================================= */
+
+.admin-body{ background:var(--canvas); color:var(--ink); }
+
+/* --- вход --- */
+.admin-login{
+    min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px;
+}
+.login-card{
+    width:100%; max-width:400px; background:var(--pine-deep); color:var(--white);
+    border-radius:20px; padding:40px 34px; box-shadow:var(--shadow);
+}
+.login-card h1{ font-family:'Fraunces', serif; font-size:1.9rem; margin:4px 0 8px; }
+.login-card p{ color:#cdd8cf; font-size:0.92rem; margin-bottom:24px; }
+.login-card .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:0.74rem; letter-spacing:0.08em;
+    text-transform:uppercase; color:var(--gold-soft);
+}
+.back-link{
+    display:block; margin-top:20px; text-align:center; color:#a9b8ac;
+    font-size:0.84rem; text-decoration:none;
+}
+.back-link:hover{ color:var(--gold-soft); }
+
+/* --- шапка --- */
+.admin-header{
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;
+    background:var(--pine-deep); color:var(--white); padding:18px 28px;
+}
+.admin-brand strong{ font-family:'Fraunces', serif; font-size:1.30rem; display:block; }
+.admin-brand span{ font-family:'IBM Plex Mono', monospace; font-size:1.10rem; color:#a9b8ac; }
+.admin-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+
+.btn-ghost-sm{
+    font-family:'IBM Plex Mono', monospace; font-size:0.8rem;
+    padding:9px 14px; border-radius:9px; cursor:pointer; text-decoration:none;
+    border:1px solid rgba(255,255,255,0.28); background:transparent; color:var(--white);
+    transition:background .2s, border-color .2s;
+}
+.btn-ghost-sm:hover{ background:rgba(255,255,255,0.1); border-color:var(--gold-soft); }
+
+.admin-main{ max-width:1280px; margin:0 auto; padding:28px; }
+
+/* --- статистика --- */
+.stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.stat-card {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 42px;
+}
+
+
+.stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--gold);
+
+    line-height: 1;
+}
+
+.stat-value {
+    font-family: 'Fraunces', serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--gold);
+    line-height: 1;
+}
+
+/* --- филтри --- */
+.admin-toolbar{
+    display:flex; flex-wrap:wrap; gap:14px; align-items:flex-end; margin-bottom:20px;
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px;
+}
+.admin-toolbar .field{ margin-bottom:0; min-width:150px; }
+.admin-toolbar .field.grow{ flex:1 1 220px; }
+.admin-toolbar .field label{ color:var(--sage); }
+.admin-toolbar .field input,
+.admin-toolbar .field select{
+    background:var(--canvas); border:1px solid var(--line); color:var(--ink); padding:10px 12px;
+}
+.admin-toolbar .field input:focus,
+.admin-toolbar .field select:focus{ border-color:var(--gold); background:var(--white); }
+.admin-toolbar .field input::placeholder{ color:#8b968d; }
+.admin-toolbar .btn-ghost-sm{ color:var(--pine-deep); border-color:var(--line); }
+.admin-toolbar .btn-ghost-sm:hover{ background:var(--canvas-2); }
+
+/* --- таблица --- */
+.table-wrap{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    overflow-x:auto;
+}
+.admin-table{ width:100%; border-collapse:collapse; min-width:940px; }
+.admin-table th{
+    text-align:left; font-family:'IBM Plex Mono', monospace; font-size:0.72rem;
+    letter-spacing:0.06em; text-transform:uppercase; color:var(--sage);
+    padding:14px 16px; border-bottom:1px solid var(--line); white-space:nowrap;
+}
+.admin-table td{
+    padding:14px 16px; border-bottom:1px solid var(--canvas-2);
+    font-size:0.9rem; color:#3d4a41; vertical-align:middle;
+}
+.admin-table tr:last-child td{ border-bottom:none; }
+.admin-table tr:hover td{ background:var(--canvas); }
+.admin-table a{ color:var(--pine-deep); text-decoration:none; border-bottom:1px solid var(--line); }
+.admin-table a:hover{ color:var(--gold); }
+
+.col-time{ font-family:'IBM Plex Mono', monospace; font-weight:600; color:var(--pine-deep); white-space:nowrap; }
+.col-name{ font-weight:600; color:var(--pine-deep); }
+.col-note{ max-width:220px; font-size:0.84rem; color:#5b665d; }
+.col-actions{ white-space:nowrap; }
+
+/* днешните часове се открояват */
+.admin-table tr.is-today td:first-child{ box-shadow:inset 3px 0 0 var(--gold); }
+.admin-table tr.status-cancelled td{ opacity:0.5; }
+.admin-table tr.status-cancelled .col-name{ text-decoration:line-through; }
+
+.badge{
+    display:inline-block; padding:4px 10px; border-radius:999px;
+    font-family:'IBM Plex Mono', monospace; font-size:0.72rem; white-space:nowrap;
+}
+.badge-new{ background:rgba(201,151,62,0.16); color:#8a6420; border:1px solid rgba(201,151,62,0.4); }
+.badge-confirmed{ background:rgba(114,163,120,0.18); color:#2f6339; border:1px solid rgba(114,163,120,0.45); }
+.badge-cancelled{ background:rgba(196,90,90,0.14); color:#8f3535; border:1px solid rgba(196,90,90,0.35); }
+
+.row-btn{
+    font-family:'IBM Plex Mono', monospace; font-size:0.74rem;
+    padding:6px 10px; margin-right:6px; border-radius:7px; cursor:pointer;
+    border:1px solid var(--line); background:var(--white); color:var(--pine-deep);
+    transition:background .2s, border-color .2s;
+}
+.row-btn:hover{ background:var(--canvas-2); border-color:var(--sage); }
+.row-btn.danger{ color:#8f3535; }
+.row-btn.danger:hover{ background:rgba(196,90,90,0.1); border-color:rgba(196,90,90,0.5); }
+
+.table-empty{ padding:40px 20px; text-align:center; color:#5b665d; font-size:0.92rem; }
+
+@media (max-width:600px){
+    .admin-header{ padding:16px 18px; }
+    .admin-main{ padding:18px 16px; }
+    .admin-toolbar{ padding:16px; }
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* =========================================================================
+   Мобилна адаптивност — общ сайт
+   ========================================================================= */
+
+@media (max-width:760px){
+
+    /* --- хедър / навигация --- */
+    .header-section{
+        flex-direction:column; align-items:stretch; gap:12px; padding:14px 16px;
+    }
+    .logo{ justify-content:center; }
+    .logo img{ width:48px; height:48px; }
+    .header-section nav ul{
+        flex-wrap:wrap; justify-content:center; gap:6px;
+    }
+    nav ul li a{ padding:8px 12px; font-size:0.86rem; }
+
+    /* --- hero --- */
+     .hero-section{
+        grid-template-columns:1fr; padding:48px 18px 40px; gap:32px; text-align:center;
+    }
+    .hero-text p{ margin-left:auto; margin-right:auto; }
+    .hero-section h2{ font-size:1.9rem; }
+    .btn-row{ justify-content:center; }
+    .hero-text .eyebrow{ justify-content:center; }
+
+    .hero-card{ padding:22px; }
+    .stat-big{ font-size:1.6rem; }
+    .chips{ justify-content:center; }
+
+    /* --- секции: заглавия --- */
+    .section-head{ text-align:center; }
+    .section-head .eyebrow{ justify-content:center; }
+    .section-head h3{ font-size:1.6rem; }
+
+    /* --- екип --- */
+    .doctor-wrap{
+        grid-template-columns:1fr; padding:24px; gap:22px; text-align:center;
+    }
+    .doctor-photo{ height:180px; margin:0 auto; width:180px; }
+    .doctor-facts{ justify-content:center; }
+
+    /* --- услуги --- */
+    .services-grid{ padding:0 18px; }
+
+    /* --- контакти (по-рано превключва общата ти точка е 860px, оставяме я) --- */
+    .contacts-info{ padding:22px 20px; }
+}
+
+@media (max-width:400px){
+    .hero-section h2{ font-size:1.6rem; }
+    .header-section nav ul{ gap:4px; }
+    nav ul li a{ padding:7px 9px; font-size:0.8rem; }
+    .slots-grid{ grid-template-columns:repeat(2,1fr); }
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.notice-banner {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+
+    z-index: 999999 !important;
+
+    background: #fff3cd !important;
+    color: #664d03 !important;
+    border-bottom: 2px solid #e0b84f;
+
+    padding: 14px 20px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+
+    box-sizing: border-box;
+
+    animation: noticePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes noticePulse {
+    0%, 100% {
+        box-shadow: 0 0 0 rgba(201, 151, 62, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 18px rgba(201, 151, 62, 0.45);
+    }
+}
+
+body:has(#noticeBanner:not([hidden])) {
+    padding-top: 55px;
+}
+
+.notice-icon {
+    display: inline-block;
+    margin-right: 6px;
+    animation: noticeIcon 1.2s ease-in-out infinite;
+}
+
+@keyframes noticeIcon {
+    0%, 100% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    25% {
+        transform: rotate(-10deg) scale(1.08);
+    }
+
+    75% {
+        transform: rotate(10deg) scale(1.08);
+    }
+}
+
+
+/* ========================================= FOOTER – DENTAL CLINIC ========================================= */
+ .site-footer {
+    position: relative;
+    background: #193A32;
+    color: #EEF2ED;
+    margin-top: 70px;
+    border: none !important;
+}
+
+.site-footer::before,
+.site-footer::after {
+    content: none !important;
+    display: none !important;
+    border: none !important;
+    background: none !important;
+}
+
+  /* Основна част */
+   .footer-inner { max-width: 1180px; margin: 0 auto; padding: 55px 30px 45px; display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.3fr; gap: 45px; } 
+  /* Заглавия */ 
+  .footer-column h3 { position: relative; margin: 0 0 22px; font-family: 'Fraunces', serif; font-size: 1.15rem; font-weight: 600; color: #E2C27A; }
+   /* Малка декоративна линия под заглавието */
+    
+     /* Текст */ .footer-column p { margin: 0 0 11px; color: #D8E2DC; font-size: 0.9rem; line-height: 1.65; } 
+     /* Линкове */ 
+     .footer-column a { color: #D8E2DC; text-decoration: none; transition: color 0.25s ease, padding-left 0.25s ease; } .footer-column a:hover { color: #E2C27A; padding-left: 4px; } /* Телефон */ .footer-column a[href^="tel"] { font-size: 1.05rem; font-weight: 600; color: #EEF2ED; }
+      /* Имейл */
+       .footer-column a[href^="mailto"] { word-break: break-word; } 
+      /* Долна част */
+       .footer-bottom {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 20px 30px;
+            border-top: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 4px;
+            text-align: center;
+        }
+
+       /* Copyright */ 
+       .footer-bottom p {
+            margin: 0;
+            color: #D8E2DC;
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+        /* ========================================= FOOTER – TABLET ========================================= */
+         @media (max-width: 850px) { .footer-inner { grid-template-columns: 1fr 1fr; gap: 38px 30px; padding: 45px 25px 35px; } .footer-bottom { padding: 18px 25px; } }
+          /* ========================================= FOOTER – MOBILE ========================================= */
+           @media (max-width: 520px) { .site-footer { margin-top: 50px; } .footer-inner { grid-template-columns: 1fr; gap: 30px; padding: 40px 22px 30px; } .footer-column h3 { margin-bottom: 17px; } .footer-column p { font-size: 0.88rem; } .footer-bottom { flex-direction: column; text-align: center; padding: 18px 20px; gap: 7px; } }
+
+    /* Премахване на декоративните линии във footer */
+.site-footer {
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+.site-footer::before,
+.site-footer::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    border: none !important;
+}
+
+.footer-inner::before,
+.footer-inner::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    border: none !important;
+}

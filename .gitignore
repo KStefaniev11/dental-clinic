@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+
+# Environment variables / secrets
+.env
+.env.*
+
+# Patient bookings
+data/bookings.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# VS Code
+.vscode/
+
+# Claude / AI files
+.claude/
+CLAUDE.md
+
+# Test / development files
+check-gmail.js
+test-email.js
+
+# Office / temporary documents
+*.docx
+~$*
+
+# Operating system
+.DS_Store
+Thumbs.db
+Thumbs.db
