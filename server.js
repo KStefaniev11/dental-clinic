@@ -19,8 +19,8 @@ const { Pool } = require('pg');
 
 const mailTransporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
+    port: Number(process.env.SMTP_PORT) || 465,
+    secure: true,
     family: 4,
     auth: {
         user: process.env.GMAIL_USER,
