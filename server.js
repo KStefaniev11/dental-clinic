@@ -32,12 +32,15 @@ const mailTransporter = nodemailer.createTransport({
 });
 
 async function sendEmail(to, subject, text) {
-    await mailTransporter.sendMail({
+    const info = await mailTransporter.sendMail({
         from: process.env.GMAIL_USER,
         to,
         subject,
         text,
     });
+
+    console.log(`✅ Имейл изпратен успешно до: ${to}`);
+    console.log(`📨 Message ID: ${info.messageId}`);
 }
 
 
