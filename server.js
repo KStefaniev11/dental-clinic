@@ -647,6 +647,8 @@ async function apiAdminUpdate(req, res, id) {
 
     // Потвърждение
     if (status === 'confirmed' && result.oldStatus !== 'confirmed') {
+        console.log('🔎 Потвърждение: започвам изпращане на имейл');
+        console.log('📧 Получател:', result.booking.email)
         try {
             await sendEmail(
                 result.booking.email,
