@@ -15,6 +15,7 @@ const fsp = require('fs/promises');
 const path = require('path');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const { Pool } = require('pg');
 
 const mailTransporter = nodemailer.createTransport({
@@ -32,15 +33,22 @@ const mailTransporter = nodemailer.createTransport({
 });
 
 async function sendEmail(to, subject, text) {
-    const info = await mailTransporter.sendMail({
-        from: process.env.GMAIL_USER,
-        to,
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
+    const { data, error } = await resend.emails.send({
+        from: 'onboarding@resend.dev',
+        to: [to],
         subject,
         text,
     });
 
+    if (error) {
+        console.error('❌ Resend грешка:', error);
+        throw new Error(error.message || 'Resend email error');
+    }
+
     console.log(`✅ Имейл изпратен успешно до: ${to}`);
-    console.log(`📨 Message ID: ${info.messageId}`);
+    console.log(`📨 Resend Email ID: ${data?.id}`);
 }
 
 
