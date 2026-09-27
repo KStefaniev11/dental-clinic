@@ -37,7 +37,7 @@ async function sendEmail(to, subject, text) {
 
     const { data, error } = await resend.emails.send({
         from: 'onboarding@resend.dev',
-        to: [to],
+        to: ['super_pippo@abv.bg'],
         subject,
         text,
     });
